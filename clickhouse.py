@@ -37,6 +37,7 @@ def get_clickhouse_data(query, host=CH_HOST):
 def upload(table, content, host=CH_HOST):
     '''Uploads data to table in ClickHous'''
     content = content.encode('utf-8')
+    content = '\n'.join(content.split('\n')[1:])
     query_dict = {
              'query': 'INSERT INTO ' + table + ' FORMAT TabSeparated'
         }
